@@ -1,0 +1,6 @@
+{
+  "name": "Nettekspertene",
+  "description": "Moderne, lynraske og søkemotoroptimaliserte nettsider for ambisiøse bedrifter. Profesjonelt webdesignstudio i Norge.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
