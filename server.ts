@@ -1,12 +1,20 @@
 import express from "express";
 import dotenv from "dotenv";
 import { Resend } from "resend";
+import cors from "cors";
 
 dotenv.config();
 
 const app = express();
 const PORT = Number(process.env.PORT) || 3000;
+const allowedOrigins = (process.env.CORS_ORIGIN || "")
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
 
+app.use(cors({
+  origin: allowedOrigins.length > 0 ? allowedOrigins : true,
+}));
 app.use(express.json());
 
 const resend = new Resend(process.env.RESEND_API_KEY);
