@@ -57,7 +57,16 @@ ${message}
       `,
     });
 
-    console.log("EMAIL SENT:", result);
+    if (result.error) {
+      console.error("RESEND ERROR:", result.error);
+
+      return res.status(result.error.statusCode || 500).json({
+        error: "Failed to send email",
+        details: result.error.message,
+      });
+    }
+
+    console.log("EMAIL SENT:", result.data);
 
     return res.json({
       success: true,

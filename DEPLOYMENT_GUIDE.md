@@ -50,7 +50,7 @@ Render trenger disse filene fra repoet:
 | `NODE_ENV` | `production` | Kjører serveren i produksjonsmodus. |
 | `RESEND_API_KEY` | `re_xxxxxxxxx` | API-nøkkelen fra Resend. |
 | `RESEND_FROM_EMAIL` | `Nettekspertene <booking@nettekspertene.com>` | Verifisert avsender i Resend. |
-| `CONTACT_RECEIVER_EMAIL` | `kontakt@nettekspertene.com` | E-posten som mottar kontaktskjemaet. |
+| `CONTACT_RECEIVER_EMAIL` | `booking@nettekspertene.com` | E-posten som mottar kontaktskjemaet. |
 
 ## Resend
 
