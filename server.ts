@@ -5,11 +5,12 @@ import { Resend } from "resend";
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = Number(process.env.PORT) || 3000;
 
 app.use(express.json());
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+const fromEmail = process.env.RESEND_FROM_EMAIL || "Nettekspertene <booking@nettekspertene.com>";
 
 // Health check (Render)
 app.get("/", (req, res) => {
@@ -26,9 +27,15 @@ app.post("/api/contact", async (req, res) => {
       });
     }
 
+    if (!process.env.RESEND_API_KEY || !process.env.CONTACT_RECEIVER_EMAIL) {
+      return res.status(500).json({
+        error: "Missing Resend email configuration",
+      });
+    }
+
     const result = await resend.emails.send({
-      from: "Nettekspertene <booking@nettekspertene.com>", 
-      to: [process.env.CONTACT_RECEIVER_EMAIL || "Contact"],
+      from: fromEmail,
+      to: [process.env.CONTACT_RECEIVER_EMAIL],
       replyTo: email,
       subject: `Ny henvendelse fra ${name}`,
       text: `
